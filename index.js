@@ -10,7 +10,13 @@ app.use(bodyParser.json());
 const Contact = require('./contact.js');
 
 app.get('/contacts', (req, res) => {
-   res.json(Contact.findAll());
+    let answer = Contact.findAll();
+
+    if (req.query.jsonp) {
+        res.send(req.query.jsonp + "(" + JSON.stringify(answer) + ");");
+    } else {
+        res.json(Contact.findAll());
+    }
 });
 
 app.get('/contacts/:id', (req, res) => {
@@ -56,5 +62,5 @@ app.delete('/contacts/:id', (req, res) => {
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log('Example app listening on port: ' . port);
+    console.log('Example app listening on port: ' + port);
 })

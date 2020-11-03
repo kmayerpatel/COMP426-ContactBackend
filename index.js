@@ -49,7 +49,7 @@ app.post('/contacts/:id', (req, res) => {
         contact.email = email;
         contact.phone = phone;
         contact.notes = notes;
-
+        contact.update();
         res.json(contact);
     }
 });

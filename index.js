@@ -38,7 +38,7 @@ app.post('/contacts', (req, res) => {
     }
 });
 
-app.post('/contacts/:id', (req, res) => {
+app.put('/contacts/:id', (req, res) => {
     let contact = Contact.find(req.params.id);
     if (contact === undefined) {
         res.status(404).send("No such contact with id = " + req.params.id);
